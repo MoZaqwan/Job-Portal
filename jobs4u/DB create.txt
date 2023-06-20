@@ -1,0 +1,181 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 26, 2022 at 12:31 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+
+--
+-- Database: jobs4u
+--
+CREATE DATABASE IF NOT EXISTS jobs4u DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE jobs4u;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table applications
+--
+
+CREATE TABLE IF NOT EXISTS applications (
+  JSUserID int(5) NOT NULL,
+  AppID int(5) NOT NULL AUTO_INCREMENT,
+  JobID int(11) NOT NULL,
+  EmployerID int(5) NOT NULL,
+  Coverletter longtext NOT NULL,
+  Fullname varchar(50) NOT NULL,
+  ContactNo char(10) NOT NULL,
+  Email varchar(50) NOT NULL,
+  CV longtext NOT NULL,
+  PRIMARY KEY (JSUserID,AppID,EmployerID),
+  UNIQUE KEY AppID (AppID),
+  KEY applications_fk (JSUserID),
+  KEY applications_fk2 (EmployerID),
+  KEY applicationdetails_fk3 (JobID)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table applications
+--
+
+INSERT INTO applications (JSUserID, AppID, JobID, EmployerID, Coverletter, Fullname, ContactNo, Email, CV) VALUES(1, 1, 1, 1, 'Your cover letter closing is the call-to-action portion of your cover letter. Inform the hiring manager that you’d love to go in for an interview. Provide your email address or other contact information and tell them that you’ll reach out in a week if you don’t hear back. Thank them for spending their time reading your cover letter.', 'Abdul Azeez', '0768366644', 'abd@gmail.com', 'cv/FutIEZzCeb/OOC_Assignment2_Metro_Weekday.docx');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table company
+--
+
+CREATE TABLE IF NOT EXISTS company (
+  RegNo char(10) NOT NULL,
+  CompanyName varchar(20) NOT NULL,
+  CompanyDescription longtext NOT NULL,
+  CompanyAddress longtext NOT NULL,
+  CompanyLogo longtext DEFAULT NULL,
+  PRIMARY KEY (RegNo)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table company
+--
+
+INSERT INTO company (RegNo, CompanyName, CompanyDescription, CompanyAddress, CompanyLogo) VALUES('DialogPLC', 'Dialog', 'Dialog Axiata Group, a subsidiary of Axiata Group Berhad (Axiata), operates Sri Lanka’s Leading Quad-Play Connectivity Provider. Dialog Axiata PLC, listed on the Colombo Stock Exchange, supplements its market leading position in the Mobile Telecommunications sector with a robust footprint and market presence in Sri Lanka’s Fixed Telecommunications, Digital Pay Television, and Financial Services markets through its subsidiaries, Dialog Broadband Networks (Private) Limited (DBN), Dialog Television (Private) Limited (DTV), Digital Holdings Lanka (Private) Limited, and Dialog Finance PLC. Dialog Axiata Group is Sri Lanka\'s largest Foreign Direct Investor (FDI) with investments totaling USD 2.8 Billion.', 'Town Hall ,Colombo', 'users/employers/EJVmqxjlOZ/Website.svg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table contactus
+--
+
+CREATE TABLE IF NOT EXISTS contactus (
+  Full_Name varchar(20) NOT NULL,
+  Phone varchar(25) NOT NULL,
+  Email varchar(20) NOT NULL,
+  Sub varchar(25) NOT NULL,
+  Message_User longtext NOT NULL,
+  PRIMARY KEY (Full_Name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table employer
+--
+
+CREATE TABLE IF NOT EXISTS employer (
+  EmployerID int(5) NOT NULL AUTO_INCREMENT,
+  EmpUsername char(8) NOT NULL,
+  email varchar(20) NOT NULL,
+  passCode varchar(255) NOT NULL,
+  RegNo varchar(20) NOT NULL,
+  PRIMARY KEY (EmployerID),
+  KEY employer_fk (RegNo)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table employer
+--
+
+INSERT INTO employer (EmployerID, EmpUsername, email, passCode, RegNo) VALUES(1, 'dialog', 'dialog@gmail.com', '123abcd', 'DialogPLC');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table jobseeker
+--
+
+CREATE TABLE IF NOT EXISTS jobseeker (
+  firstname varchar(20) NOT NULL,
+  lastname varchar(20) NOT NULL,
+  JSuserName char(8) NOT NULL,
+  seekerID int(5) NOT NULL AUTO_INCREMENT,
+  email varchar(20) NOT NULL,
+  passCode varchar(255) NOT NULL,
+  PRIMARY KEY (seekerID)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table jobseeker
+--
+
+INSERT INTO jobseeker (firstname, lastname, JSuserName, seekerID, email, passCode) VALUES('Abdul Azeez', 'Irfan', 'ABD61', 1, 'abd@gmail.com', 'abc123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table vacancies
+--
+
+CREATE TABLE IF NOT EXISTS vacancies (
+  job_id int(11) NOT NULL AUTO_INCREMENT,
+  title varchar(30) NOT NULL,
+  location longtext NOT NULL,
+  type varchar(20) NOT NULL,
+  Industry varchar(25) NOT NULL,
+  description longtext NOT NULL,
+  published_date date NOT NULL,
+  closing_date date NOT NULL,
+  Emp_ID int(5) NOT NULL,
+  skills longtext NOT NULL,
+  requirements longtext NOT NULL,
+  Reg_No char(10) NOT NULL,
+  PRIMARY KEY (job_id),
+  KEY Vacancies_fk (Emp_ID)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table vacancies
+--
+
+INSERT INTO vacancies (job_id, title, location, type, Industry, description, published_date, closing_date, Emp_ID, skills, requirements, Reg_No) VALUES(1, 'Customer Servicer', 'Jaffna', 'Parttime', 'Customer Service', '                          COME JOIN SRI LANKA\'S BEST SERVICE TEAM! Dialog Business Services is hiring CUSTOMER SERVICE ASSOCIATES! (Full-time) Please refer to the job advert for further information.\r\nAttractive Salary plus comprehensive benefits. Dialog Business Services (Pvt) Ltd (DBS) is a fully owned subsidiary of Dialog Axiata PLC, Sri Lanka\'s premier connectivity provider. DBS manages Dialog\'s customer interaction operations across its Mobile, Fixed Line, Pay Television and Broadband services                        ', '2022-05-26', '2022-05-31', 1, 'Book keeping, Saving , Having good experience', '', 'DialogPLC');
+INSERT INTO vacancies (job_id, title, location, type, Industry, description, published_date, closing_date, Emp_ID, skills, requirements, Reg_No) VALUES(2, 'Channel Planner', 'Kaluthara', 'Parttime', 'IT & Software', 'COME JOIN SRI LANKA\'S BEST SERVICE TEAM! Dialog Business Services is hiring CUSTOMER SERVICE ASSOCIATES! (Full-time) Please refer to the job advert for further information.\r\nAttractive Salary plus comprehensive benefits. Dialog Business Services (Pvt) Ltd (DBS) is a fully owned subsidiary of Dialog Axiata PLC, Sri Lanka\'s premier connectivity provider. DBS manages Dialog\'s customer interaction operations across its Mobile, Fixed Line, Pay Television and Broadband services', '2022-05-26', '2022-06-05', 1, 'Responsible for planning relevant sales channels to drive the business objectives for all products and Sales channels, Undertake the responsibility in setting targets and coordinating with the relevant Channel & regionals sales managers and aligning them with the company’s objectives , Responsible for structural channel developments/transformations to enable achievement of business objectives & support strategic aims, Ensure to respond to market changes through sales planning for the available channels in order achieve company strategic objectives as formulated under company business plans. , Counter competitor activities/initiatives to maintain market leadership and growth momentum', '', 'DialogPLC');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table applications
+--
+ALTER TABLE applications
+  ADD CONSTRAINT applicationdetails_fk3 FOREIGN KEY (JobID) REFERENCES vacancies (job_id),
+  ADD CONSTRAINT applications_fk1 FOREIGN KEY (JSUserID) REFERENCES jobseeker (seekerID),
+  ADD CONSTRAINT applications_fk2 FOREIGN KEY (EmployerID) REFERENCES employer (EmployerID);
+
+--
+-- Constraints for table employer
+--
+ALTER TABLE employer
+  ADD CONSTRAINT employer_fk FOREIGN KEY (RegNo) REFERENCES company (RegNo);
+
+--
+-- Constraints for table vacancies
+--
+ALTER TABLE vacancies
+  ADD CONSTRAINT Vacancies_fk FOREIGN KEY (Emp_ID) REFERENCES employer (EmployerID);
+COMMIT;

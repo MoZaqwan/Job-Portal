@@ -1,0 +1,117 @@
+div.formspace {
+  box-shadow: 0px 8px 20px 13px #ccc;
+  width: 75%;
+  padding: 20px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: #f3f3f3;
+  line-height: 1.4;
+}
+.formAtts {
+  font-size: 16px;
+  font-family: "Verdana";
+}
+div.top {
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+}
+.jobTitle {
+  grid-column: 1;
+}
+h3.topTitle {
+  font-size: 35px;
+}
+.cmpnyLogo {
+  grid-column: 2;
+  height: 100px;
+}
+
+img {
+  float: right;
+  height: 100%;
+  object-fit: contain;
+}
+
+.inputArea {
+  height: 25px;
+  width: 100%;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  padding: 4px;
+  border-color: rgb(133, 133, 133);
+}
+
+textarea {
+  border-radius: 5px;
+  width: 100%;
+}
+
+#myCV {
+  padding: 8px;
+  border: 1px solid rgb(133, 133, 133);
+  border-radius: 5px;
+  width: 200px;
+  background-color: white;
+  height: -webkit-fill-available;
+}
+
+#UploadButton {
+  font-size: 16px;
+  padding: 0 3px;
+}
+div.upload {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  background-color: #20c997;
+  height: 40px;
+  width: 292px;
+  margin-left: 30px;
+}
+
+div.bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+#submitBtn {
+  font-size: 18px;
+  font-weight: bold;
+  height: 35px;
+  width: 210px;
+  border: 1px hidden;
+  background-color: #20c997;
+  color: white;
+  border-radius: 5px;
+}
+
+#submitBtn:hover {
+  box-shadow: 0px 3px 20px 5px #c9c9c9;
+  background-color: #ffffff;
+  color: #20c997;
+  border: 2px solid #20c997;
+}
+
+#closeBtn {
+  font-size: 18px;
+  font-weight: bold;
+  height: 35px;
+  width: 80px;
+  border: 1px hidden;
+  background-color: #20c997;
+  color: white;
+  border-radius: 5px;
+}
+
+#closeBtn:hover {
+  box-shadow: 0px 3px 20px 5px #c9c9c9;
+  background-color: #ffffff;
+  color: #20c997;
+  border: 2px solid #20c997;
+}
